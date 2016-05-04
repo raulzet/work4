@@ -21,7 +21,7 @@ class Quiz {
         $questionId = $this->request->post('questionId');
 
 
-//
+//o modificare
 //        try {
 //            $this->quizRepository->search($id);
 //            $content = new \Entity\QuizEntity($id, $title, $description, $questionId);
