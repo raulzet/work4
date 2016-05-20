@@ -8,8 +8,21 @@ use Helper\Myex;
 
 class QuizRepository implements InterfaceRepository {
 
+    /**
+     * @var string 
+     */
     private $content;
+
+    /**
+     *
+     * @var string 
+     */
     private $file;
+
+    /**
+     *
+     * @var int
+     */
     private $idCount;
 
     function __construct($file) {
@@ -67,22 +80,10 @@ class QuizRepository implements InterfaceRepository {
         $this->save($test);
     }
 
-//    public function found($id) {
-//        $json = json_decode(file_get_contents($this->file), true);
-//
-//        foreach ($json as $data) {
-//            if ($data['id'] === $id) {
-//                return $data;
-//            }
-//        }
-//        return "";
-//    }
-
     public function saveToFile() {
 
         $contentArray = [];
         foreach ($this->content as $quiz) {
-            // $contentArray[] = $question->transformObjectToArrayQuiz();
             if (is_object($quiz)) {
                 $quiz_object = new Quiz($quiz->getId(), $quiz->getTitle(), $quiz->getDescription(), $quiz->getQuestionId());
                 $contentArray [] = $quiz_object->transformObjectToArrayQuiz();
@@ -97,11 +98,8 @@ class QuizRepository implements InterfaceRepository {
     }
 
     public function remove($id) {
-        var_dump($this->content);
         unset($this->content[$id]);
-        var_dump($this->content);
         $this->save($this->content);
-        // var_dump($this->content);
     }
 
 }

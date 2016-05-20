@@ -8,60 +8,41 @@
         <style> 
             .container{
                 text-align: center;
-                margin-top: 15%;
+                margin-top: 18%;
             }
+            
         </style>
     </head>
     <body>
 
+        <div class="container">
 
 
+            <form  method="post" action="http://localhost/Work4/index.php/?handler=qu&action=addQuestion" >
 
 
+                <input type="submit"  value="Create Questions"/>
+
+            </form>
 
 
-
-        <a href="http://localhost/Work4/index.php/?handler=auth&action=logOut">Log out</a>
-            
-        <form  method="post" action="http://localhost/Work4/index.php/?handler=auth&action=logOut" >
+            <form  method="post" action="http://localhost/Work4/index.php/?handler=test&action=addTest" >
 
 
-            <input type="submit" name="logOut" value="Log Out"/>
+                <input type="submit"  value="Create Quiz"/>
 
-        </form>
+            </form>
 
-
-        <form  method="post" action="http://localhost/Work4/index.php/?handler=qu&action=addQuestion" >
-
-
-            <input type="submit"  value="Create Questions"/>
-
-        </form>
-        
-
-        <form  method="post" action="http://localhost/Work4/index.php/?handler=test&action=addTest" >
+            <form  method="post" action="http://localhost/Work4/index.php/?handler=auth&action=logOut" >
 
 
-            <input type="submit"  value="Create Quiz"/>
+                <input type="submit" name="logOut" value="Log Out"/>
 
-        </form>
+            </form>
 
-
-
-
+        </div>
 
 
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-    </form>
-
-
-
-
-
-
-</body>
+    </body>
 </html>
 

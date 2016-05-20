@@ -4,7 +4,14 @@ namespace Controller;
 
 class Authentication {
 
+    /**
+     * @var string
+     */
     private $userRepo;
+
+    /**
+     * @var string
+     */
     private $request;
 
     public function __construct(\Helper\Request $req) {
@@ -12,50 +19,10 @@ class Authentication {
         $this->request = $req;
     }
 
+    /**
+     * Logs a user into their account
+     */
     public function logIn() {
-        
-//        $username = $this->request->post('username');
-//        $pass = $this->request->post('password');
-//
-//        if (!$username || !$pass) {
-//
-//            $_SESSION['user_logged'] = null;
-//            echo "you must enter your username and your password!\n";
-//
-//
-//            header('Refresh: 3; URL=http://localhost/Work4/index.php');
-//        } else {
-//            $allUsers = $this->userRepo->loadAll();
-//            $ok = 0;
-//            /* @var $user \Entity\UserEntity */
-//            foreach ($allUsers as $user) {
-//
-////                echo $pass;
-////                echo $user->getPassword();
-////                echo $username;
-////                echo $user->getUsername();
-////                echo "<br>";
-//
-//
-//                if ($username === $user->getUsername() && password_verify($pass, $user->getPassword())) {
-//                    $ok = 1;
-//                    break;
-//                }
-//            }
-//            if ($ok === 1) {
-//                $_SESSION['user_logged'] = $username;
-//
-//                header('Location: http://localhost/Work4/View/User/profil.php');
-//            } else {
-//                $_SESSION['user_logged'] = null;
-//                echo "Username or password are invalid!\n";
-//
-//
-//                header('Refresh: 5; URL=http://localhost/Work4/index.php');
-//            }
-//        }
-   
-        
 
         $username = $this->request->post('username');
         $pass = $this->request->post('password');
@@ -79,17 +46,17 @@ class Authentication {
             echo $ex->getMessage();
             header('Refresh: 2; URL=http://localhost/Work4/index.php');
         }
-        
-        
-        
     }
 
     public function logOut() {
-      
+
         session_destroy();
         header('Location: http://localhost/Work4/index.php');
     }
 
+    /**
+     * Registers a user
+     */
     public function signUp() {
 
         $name = $this->request->post('name');
@@ -97,7 +64,7 @@ class Authentication {
         $username = $this->request->post('username');
         $password = $this->request->post('password');
 
- 
+
         try {
             $this->userRepo->search($username);
             $user = new \Entity\UserEntity($name, $email, $username, $password, 0);

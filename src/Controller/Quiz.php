@@ -2,10 +2,16 @@
 
 namespace Controller;
 
-
 class Quiz {
 
+    /**
+     * @var string 
+     */
     private $quizRepository;
+
+    /**
+     * @var string
+     */
     private $request;
 
     public function __construct(\Helper\Request $req) {
@@ -13,6 +19,9 @@ class Quiz {
         $this->request = $req;
     }
 
+    /**
+     * adds a new quiz
+     */
     public function add() {
 
         $id = $this->request->post('id');
@@ -20,19 +29,6 @@ class Quiz {
         $description = $this->request->post('description');
         $questionId = $this->request->post('questionId');
 
-
-//o modificare
-//        try {
-//            $this->quizRepository->search($id);
-//            $content = new \Entity\QuizEntity($id, $title, $description, $questionId);
-//
-//
-//            $this->quizRepository->save($content);
-//            header('Location: ' . $_SERVER['HTTP_REFERER']);
-//        } catch (\Exception $ex) {
-//            echo $ex->getMessage();
-//            header('Refresh: 3; URL=http://localhost/Work4/index.php');
-//        }
 
         try {
             $this->quizRepository->addTest($id, $title, $description, $questionId);
@@ -46,7 +42,7 @@ class Quiz {
     }
 
     public function showView($tests = null) {
-        include_once 'View/tt.php';
+        include_once 'View/Admin/showTest.php';
     }
 
     public function getContent() {
@@ -55,7 +51,7 @@ class Quiz {
     }
 
     public function showFileTest($tests = null) {
-        include_once 'View/ut.php';
+        include_once 'View/User/viewTest.php';
     }
 
     public function getContentTest() {
@@ -77,19 +73,5 @@ class Quiz {
 
         include"View/Admin/addTest.php";
     }
-
-//    public function getQuestionsByTestId($id) {
-//        
-//        $quizQuestions = [];
-//        $quiz = $this->quizRepository->search($id);
-//        $questions = $quiz->getQuestionId();
-//        
-//        $qu = explode(',', $qw);
-//
-//        foreach ($questions as $question) {
-//            
-//            $quizQuestions = $this->question->quizRepository;
-//        }
-//    }
 
 }

@@ -20,10 +20,10 @@
 
         <form class= "container" action ="http://localhost/Work4/index.php/?handler=auth&action=login" method="post">
             <label>Username: </label>
-            <input type ="text" name ="username" />
+            <input type ="text" name ="username" placeholder="Username"/>
             <br><br>
             <label>Password: </label>
-            <input type ="password" name ="password" />
+            <input type ="password" name ="password" placeholder="Password" />
             <br><br>
             <input type ="submit" value="Log In"/>
             

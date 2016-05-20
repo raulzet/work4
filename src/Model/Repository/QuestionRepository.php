@@ -8,8 +8,19 @@ use Helper\Myex;
 
 class QuestionRepository implements InterfaceRepository {
 
+    /**
+     * @var string 
+     */
     private $content;
+
+    /**
+     * @var string 
+     */
     private $file;
+
+    /**
+     * @var int 
+     */
     private $idCount;
 
     function __construct($file) {
@@ -39,10 +50,6 @@ class QuestionRepository implements InterfaceRepository {
         return $this->loadJSONContent();
     }
 
-//    public function load($id){
-//        return $this->content[$id];
-//    }
-
     public function load($id) {
         if (isset($this->content[$id]) == false) {
             throw new Myex("The question does not exists!");
@@ -68,33 +75,18 @@ class QuestionRepository implements InterfaceRepository {
         return false;
     }
 
+    /**
+     * deletes an entity from file
+     * @param int $id
+     */
     public function remove($id) {
-//        $content = $this->loadAll();
-//        //var_dump($content);
-//        $key = null;
-//
-//        foreach ($content as $element) {
-//            echo $element->getId();
-//            echo "<br>";
-//            echo "chiea de delete" . $id;
-//            if ($element->getId() == $id) {
-//                $key = key($element);
-//            }
-//        }
-
-        //var_dump($key);
-        //die;
-        // $deletedQuestion = $this->load($id);
         unset($this->content[$id]);
-        //var_dump($this->content);
         $this->save($this->content);
-        //return $deletedQuestion;
     }
 
     public function saveToFile() {
 
         $contentArray = [];
-       // var_dump($this->content);
         foreach ($this->content as $question) {
 
             if (is_object($question)) {
@@ -102,13 +94,8 @@ class QuestionRepository implements InterfaceRepository {
                 $contentArray [] = $question_object->transformObjectToArrayQuestion();
             }
         }
-        //array_pop($contentArray);
         file_put_contents($this->file, json_encode($contentArray));
-        
     }
-    
-    
-
 
     public function save($entity) {
         $this->content[] = $entity;

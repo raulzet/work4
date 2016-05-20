@@ -8,9 +8,7 @@ $req = new Helper\Request();
 
 session_start();
 
-//if (isset($_SESSION['user_logged'])) {
-//     header('Location:' . 'View/User/profil.php');
-//} else {
+
 switch ($req->get('handler')) {
 
     case 'auth':
@@ -84,8 +82,6 @@ switch ($req->get('handler')) {
         } else {
             header('Location:' . 'View/User/profil.php');
         }
-
-    // }
 }
 
 
